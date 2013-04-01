@@ -3,6 +3,8 @@
 
     <string name="app_name">Tic Tac Toe!</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="welcome_string">Welcome! Tap to begin</string>
+    <string name="oneplay">One Player</string>
+    <string name="twoplay">Two Players</string>
 
 </resources>
