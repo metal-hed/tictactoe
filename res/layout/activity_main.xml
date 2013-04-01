@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/oneplay" />
+        android:text="@string/oneplay"
+        android:onClick="singleGame" />
 
     <Button
         android:id="@+id/twoplayer"
@@ -33,6 +34,7 @@
         android:layout_below="@+id/oneplayer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:text="@string/twoplay" />
+        android:text="@string/twoplay"
+        android:onClick="multiGame" />
 
 </RelativeLayout>

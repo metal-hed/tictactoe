@@ -6,5 +6,9 @@
     <string name="welcome_string">Welcome! Tap to begin</string>
     <string name="oneplay">One Player</string>
     <string name="twoplay">Two Players</string>
+    <string name="notReady">AI is not ready for single player games</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="game_board">The Tic Tac Toe game board</string>
+    <string name="reset_button">Reset</string>
 
 </resources>
