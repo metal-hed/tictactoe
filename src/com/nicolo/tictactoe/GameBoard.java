@@ -33,7 +33,7 @@ public class GameBoard {
 			case 6: return makeMove(2, 0, player); 
 			case 7: return makeMove(2, 1, player); 
 			case 8: return makeMove(2, 2, player); 
-			default: return -99;
+			default: return INVALID;
 		}
 		
 		
