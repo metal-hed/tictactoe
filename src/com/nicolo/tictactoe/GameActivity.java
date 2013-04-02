@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 public class GameActivity extends Activity {
 	private GameBoard board = new GameBoard();
-	final private int X = 1;
-	final private int O = 0;
+	final private int X = 2;
+	final private int O = 1;
+	final private int DRAW = -2;
+	final private int WINNER = 69;
+	final private int INVALID = -99;
 	private int player = X;
 	
 	@Override
@@ -33,7 +36,7 @@ public class GameActivity extends Activity {
 	            
 	            int result = board.processMove(position, player);
 	            //Toast.makeText(GameActivity.this, result, Toast.LENGTH_SHORT).show();
-	            if(result != -99){
+	            if(result != INVALID){
 	            	ImageView imgView = (ImageView) v;
 	        		
 	        		if (player == X)
@@ -42,10 +45,10 @@ public class GameActivity extends Activity {
 	        			imgView.setBackgroundResource(R.drawable.o);
 	        		
 	        		
-	            	if (result == -2){
+	            	if (result == DRAW){
 	            		Toast.makeText(GameActivity.this, R.string.draw_string, Toast.LENGTH_LONG).show();
 	            	}
-	            	if (result == 69){
+	            	if (result == WINNER){
 	            		toastWinner(player);
 	            		return;
 	            	}
