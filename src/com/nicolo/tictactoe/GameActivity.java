@@ -9,10 +9,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class GameActivity extends Activity {
-
+	private GameBoard board = new GameBoard();
+	final private int X = 1;
+	final private int O = 0;
+	private int player = X;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,11 +30,53 @@ public class GameActivity extends Activity {
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	            Toast.makeText(GameActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+	            
+	            int result = board.processMove(position, player);
+	            //Toast.makeText(GameActivity.this, result, Toast.LENGTH_SHORT).show();
+	            if(result != -99){
+	            	ImageView imgView = (ImageView) v;
+	        		
+	        		if (player == X)
+	        			imgView.setBackgroundResource(R.drawable.x);
+	        		else
+	        			imgView.setBackgroundResource(R.drawable.o);
+	        		
+	        		
+	            	if (result == -2){
+	            		Toast.makeText(GameActivity.this, R.string.draw_string, Toast.LENGTH_LONG).show();
+	            	}
+	            	if (result == 69){
+	            		toastWinner(player);
+	            		return;
+	            	}
+	            	
+	            	switchPlayer();
+	            }
 	        }
 	    });
 	}
+	
+	private void toastWinner(int player){
+		if (player == X)
+			Toast.makeText(GameActivity.this, R.string.x_win, Toast.LENGTH_LONG).show();
+		else
+			Toast.makeText(GameActivity.this, R.string.o_win, Toast.LENGTH_LONG).show();
+	}
 
+	private void switchPlayer(){
+		if (player == X)
+			player = O;
+		else
+			player = X;
+	}
+	
+	public void clearBoard(View v){
+		GridView gridview = (GridView) findViewById(R.id.boardGrid);
+		gridview.setAdapter(new ImageAdapter(this));
+		board = new GameBoard();
+		Toast.makeText(GameActivity.this, R.string.new_game, Toast.LENGTH_SHORT).show();
+	}
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */

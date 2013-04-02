@@ -9,6 +9,10 @@
     <string name="notReady">AI is not ready for single player games</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="game_board">The Tic Tac Toe game board</string>
-    <string name="reset_button">Reset</string>
+    <string name="reset_button">New Game</string>
+    <string name="draw_string">Draw!</string>
+    <string name="o_win">O\'s win the game!</string>
+    <string name="x_win">X\'s win the game!</string>
+    <string name="new_game">New Game</string>
 
 </resources>

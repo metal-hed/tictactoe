@@ -25,7 +25,8 @@
          android:layout_alignParentBottom="true"
          android:layout_centerHorizontal="true"
          android:layout_marginBottom="46dp"
-         android:text="@string/reset_button" />
+         android:text="@string/reset_button" 
+         android:onClick="clearBoard"/>
 
      <GridView
          android:id="@+id/boardGrid"
