@@ -51,6 +51,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int draw_string=0x7f050009;
         public static final int game_board=0x7f050007;
+        public static final int make_move=0x7f05000d;
         public static final int new_game=0x7f05000c;
         public static final int notReady=0x7f050005;
         public static final int o_win=0x7f05000a;

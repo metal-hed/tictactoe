@@ -22,6 +22,10 @@ public class GameBoard {
 		return board;
 	}
 	
+	public int processMove(int row, int col, int player){
+		return makeMove(row, col, player);
+	}
+	
 	public int processMove(int position, int player){
 		switch (position){
 			case 0: return makeMove(0, 0, player); 

@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 
 	// "One Player" Button listener
 	public void singleGame(View view){
-		Toast.makeText(getApplicationContext(), getResources().getString(R.string.notReady), Toast.LENGTH_LONG).show();
+		//Toast.makeText(getApplicationContext(), getResources().getString(R.string.notReady), Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this,GameActivity.class);
 		intent.putExtra(ENABLE_AI, true);
 		startActivity(intent);
