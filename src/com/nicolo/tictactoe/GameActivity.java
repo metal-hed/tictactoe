@@ -1,6 +1,7 @@
 package com.nicolo.tictactoe;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -19,7 +20,9 @@ public class GameActivity extends Activity {
 	final private int DRAW = -2;
 	final private int WINNER = 69;
 	final private int INVALID = -99;
+	// TODO: Create preference for who goes first
 	private int player = X;
+	private boolean AI;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,9 @@ public class GameActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
+		Intent intent = getIntent();
+		AI = intent.getBooleanExtra(MainActivity.ENABLE_AI, false);
+		
 		GridView gridview = (GridView) findViewById(R.id.boardGrid);
 		gridview.setAdapter(new ImageAdapter(this));
 
@@ -35,7 +41,7 @@ public class GameActivity extends Activity {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	            
 	            int result = board.processMove(position, player);
-	            //Toast.makeText(GameActivity.this, result, Toast.LENGTH_SHORT).show();
+	            
 	            if(result != INVALID){
 	            	ImageView imgView = (ImageView) v;
 	        		

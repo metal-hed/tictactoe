@@ -38,6 +38,7 @@
          android:layout_alignRight="@+id/imageView1"
          android:layout_alignTop="@+id/imageView1"
          android:horizontalSpacing="@dimen/activity_horizontal_margin"
+         android:verticalSpacing="5dp"
          android:numColumns="3" >
 
      </GridView>

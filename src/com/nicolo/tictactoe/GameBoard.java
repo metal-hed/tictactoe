@@ -7,7 +7,7 @@ public class GameBoard {
 	final private int DRAW = -2;
 	final private int WINNER = 69;
 	final private int INVALID = -99;
-	final private int BLANK = 0;
+	final public int BLANK = 0;
 	final private int CONTINUE = 5;
 	final private int SIZE = 3;
 	
@@ -103,5 +103,7 @@ public class GameBoard {
 		
 		return CONTINUE;
 	}
-
+	public int getSize(){
+		return SIZE;
+	}
 }
