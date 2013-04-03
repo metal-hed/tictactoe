@@ -2,7 +2,9 @@ package com.nicolo.tictactoe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -38,4 +40,42 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
+	 private void getDimens(){
+	    	//Determine screen size
+	        if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {     
+	            Toast.makeText(this, "Large screen",Toast.LENGTH_LONG).show();
+
+	        }
+	        else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {     
+	            Toast.makeText(this, "Normal sized screen" , Toast.LENGTH_LONG).show();
+
+	        } 
+	        else if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {     
+	            Toast.makeText(this, "Small sized screen" , Toast.LENGTH_LONG).show();
+	        }
+	        else {
+	            Toast.makeText(this, "Screen size is neither large, normal or small" , Toast.LENGTH_LONG).show();
+	        }
+
+
+
+
+	        //Determine density
+	        DisplayMetrics metrics = new DisplayMetrics();
+	            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+	            int density = metrics.densityDpi;
+
+	            if (density==DisplayMetrics.DENSITY_HIGH) {
+	                Toast.makeText(this, "DENSITY_HIGH... Density is " + String.valueOf(density),  Toast.LENGTH_LONG).show();
+	            }
+	            else if (density==DisplayMetrics.DENSITY_MEDIUM) {
+	                Toast.makeText(this, "DENSITY_MEDIUM... Density is " + String.valueOf(density),  Toast.LENGTH_LONG).show();
+	            }
+	            else if (density==DisplayMetrics.DENSITY_LOW) {
+	                Toast.makeText(this, "DENSITY_LOW... Density is " + String.valueOf(density),  Toast.LENGTH_LONG).show();
+	            }
+	            else {
+	                Toast.makeText(this, "Density is neither HIGH, MEDIUM OR LOW.  Density is " + String.valueOf(density),  Toast.LENGTH_LONG).show();
+	            }
+	    }
 }

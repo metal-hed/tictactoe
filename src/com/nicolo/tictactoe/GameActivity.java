@@ -7,10 +7,7 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.GridView;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class GameActivity extends Activity {
@@ -33,36 +30,37 @@ public class GameActivity extends Activity {
 		
 		Intent intent = getIntent();
 		AI = intent.getBooleanExtra(MainActivity.ENABLE_AI, false);
-		
-		GridView gridview = (GridView) findViewById(R.id.boardGrid);
-		gridview.setAdapter(new ImageAdapter(this));
 
-	    gridview.setOnItemClickListener(new OnItemClickListener() {
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	            
-	            int result = board.processMove(position, player);
-	            
-	            if(result != INVALID){
-	            	ImageView imgView = (ImageView) v;
-	        		
-	        		if (player == X)
-	        			imgView.setBackgroundResource(R.drawable.x);
-	        		else
-	        			imgView.setBackgroundResource(R.drawable.o);
-	        		
-	        		
-	            	if (result == DRAW){
-	            		Toast.makeText(GameActivity.this, R.string.draw_string, Toast.LENGTH_LONG).show();
-	            	}
-	            	if (result == WINNER){
-	            		toastWinner(player);
-	            		return;
-	            	}
-	            	
-	            	switchPlayer();
-	            }
-	        }
-	    });
+	}
+	
+	public void process(){
+		
+	}
+
+	
+	public void processClick(View v){
+		//Toast.makeText(GameActivity.this, ""+v.getTag(), Toast.LENGTH_LONG).show();
+		 int result = board.processMove(Integer.parseInt(v.getTag().toString()), player);
+         
+         if(result != INVALID){
+         	ImageButton imgView = (ImageButton) v;
+     		
+     		if (player == X)
+     			imgView.setImageResource(R.drawable.x);
+     		else
+     			imgView.setImageResource(R.drawable.o);
+     		
+     		
+         	if (result == DRAW){
+         		Toast.makeText(GameActivity.this, R.string.draw_string, Toast.LENGTH_LONG).show();
+         	}
+         	if (result == WINNER){
+         		toastWinner(player);
+         		return;
+         	}
+         	
+         	switchPlayer();
+         }
 	}
 	
 	private void toastWinner(int player){
@@ -80,8 +78,7 @@ public class GameActivity extends Activity {
 	}
 	
 	public void clearBoard(View v){
-		GridView gridview = (GridView) findViewById(R.id.boardGrid);
-		gridview.setAdapter(new ImageAdapter(this));
+		
 		board = new GameBoard();
 		Toast.makeText(GameActivity.this, R.string.new_game, Toast.LENGTH_SHORT).show();
 	}

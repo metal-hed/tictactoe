@@ -1,11 +1,15 @@
 package com.nicolo.tictactoe;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TableRow;
+import android.widget.Toast;
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
@@ -28,26 +32,28 @@ public class ImageAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        ImageButton imageButton;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setPadding(8, 8, 8, 8);
+        	imageButton = new ImageButton(mContext);
+        	imageButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+        	imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        	imageButton.setAdjustViewBounds(true);
+        	imageButton.setMaxHeight(100);
+        	imageButton.setMaxWidth(100);
+            //imageView.setPadding(8, 8, 8, 8);
         } else {
-            imageView = (ImageView) convertView;
+        	imageButton = (ImageButton) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
-        return imageView;
+        //imageView.setImageResource(mThumbIds[position]);
+        imageButton.setImageResource(R.drawable.blank);
+        return imageButton;
     }
 
+   
+    
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.blank, R.drawable.blank, 
-            R.drawable.blank, R.drawable.blank,
-            R.drawable.blank, R.drawable.blank,
-            R.drawable.blank, R.drawable.blank,
-            R.drawable.blank
+            R.drawable.o
     };
 }

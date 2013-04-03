@@ -1,46 +1,177 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".GameActivity" >
-	
-     <ImageView
-         android:id="@+id/imageView1"
-         android:layout_width="match_parent"
-         android:layout_height="300dp"
-         android:layout_above="@+id/button1"
-         android:contentDescription="@string/game_board"
-         android:scaleType="fitXY"
-         android:src="@drawable/board" />
 
-     <Button
-         android:id="@+id/button1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_centerHorizontal="true"
-         android:layout_marginBottom="46dp"
-         android:text="@string/reset_button" 
-         android:onClick="clearBoard"/>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/new_game" />
 
-     <GridView
-         android:id="@+id/boardGrid"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_above="@+id/button1"
-         android:layout_alignLeft="@+id/imageView1"
-         android:layout_alignRight="@+id/imageView1"
-         android:layout_alignTop="@+id/imageView1"
-         android:horizontalSpacing="@dimen/activity_horizontal_margin"
-         android:verticalSpacing="5dp"
-         android:numColumns="3" >
+    <TableLayout
+        android:id="@+id/board_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:clickable="false">
 
-     </GridView>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:clickable="false">
+            	<ImageButton
+            	    android:id="@+id/cell0"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="0" />
+
+            	<ImageButton
+            	    android:id="@+id/cell1"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="1" />
+
+            	<ImageButton
+            	    android:id="@+id/cell2"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="2" />
+
+        </TableRow>
+
+		<!-- Draw Line 
+		<View
+		    android:layout_height="2dip"
+		    android:background="@color/holo" /-->
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+			android:clickable="false">
+            	<ImageButton
+            	    android:id="@+id/cell3"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="3" />
+
+            	<ImageButton
+            	    android:id="@+id/cell4"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="4" />
+
+            	<ImageButton
+            	    android:id="@+id/cell5"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="5" />
+
+        </TableRow>
+		<!-- Draw Line 
+		<View
+		    android:layout_height="2dip"
+		    android:background="@color/holo" /-->
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+			android:clickable="false" >
+            	<ImageButton
+            	    android:id="@+id/cell6"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="6" />
+
+            	<ImageButton
+            	    android:id="@+id/cell7"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="7" />
+
+            	<ImageButton
+            	    android:id="@+id/cell8"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:adjustViewBounds="true"
+            	    android:contentDescription="@string/cell"
+            	    android:maxHeight="100dp"
+            	    android:maxWidth="100dp"
+            	    android:onClick="processClick"
+            	    android:scaleType="centerInside"
+            	    android:src="@drawable/blank"
+            	    android:tag="8" />
+
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

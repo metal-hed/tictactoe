@@ -15,5 +15,7 @@
     <string name="x_win">X\'s win the game!</string>
     <string name="new_game">New Game</string>
     <string name="make_move">Player, make a move</string>
+    <string name="cell">cell</string>
+    <color name="holo">#0099cc</color>
 
 </resources>
