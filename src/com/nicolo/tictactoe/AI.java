@@ -6,11 +6,13 @@ import java.util.List;
 public class AI {
 	private int ai;
 	private int human;
+	private int difficulty;
 	private boolean myTurn;
 	
-	public AI(int ai, int human, boolean myTurn){
+	public AI(int ai, int human, int difficulty, boolean myTurn){
 		this.ai = ai;
 		this.human = human;
+		this.difficulty = difficulty;
 		this.myTurn = myTurn;
 	}
 	
@@ -18,6 +20,9 @@ public class AI {
 		return myTurn;
 	}
 	
+	public int getLetter(){
+		return ai;
+	}
 	public void setTurn(boolean myTurn){
 		this.myTurn = myTurn;
 	}
@@ -25,7 +30,7 @@ public class AI {
 	// Get next best move for computer. Return int[2] of {row, col} 
    public int[] play(GameBoard board) {
 	   // TODO: create preference for depth, ie: difficulty
-      int[] result = minimax(1, ai, board); // depth, max turn
+      int[] result = minimax(difficulty, ai, board); // depth, max turn
       return result;
       //return xyToPosition(result[1], result[2]);   // row, col
    }

@@ -26,26 +26,29 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	 public boolean onOptionsItemSelected(MenuItem mi){
+	 /*public boolean onOptionsItemSelected(MenuItem mi){
 		 Intent intent = new Intent(this,SettingsActivity.class);
 		 startActivity(intent);
 		 return true;
-	 }
+	 }*/
 	 
 	// "One Player" Button listener
 	public void singleGame(View view){
-		Intent intent = new Intent(this,GameActivity.class);
-		intent.putExtra(ENABLE_AI, true);
-		startActivity(intent);
+		startGameScreen(true);
 	}
 	
 	// "Two Players" Button listener
 	public void multiGame(View view){
+		startGameScreen(false);
+	}
+	
+	
+	public void startGameScreen(boolean ai){
 		Intent intent = new Intent(this,GameActivity.class);
-		intent.putExtra(ENABLE_AI, false);
+		intent.putExtra(ENABLE_AI, ai);
 		startActivity(intent);
 	}
-
+	
 	 private void getDimens(){
 	    	//Determine screen size
 	        if ((getResources().getConfiguration().screenLayout &      Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {     

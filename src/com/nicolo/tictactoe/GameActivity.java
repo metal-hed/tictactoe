@@ -1,7 +1,9 @@
 package com.nicolo.tictactoe;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -19,8 +21,11 @@ public class GameActivity extends Activity {
 	final private int DRAW = -2;
 	final private int WINNER = 69;
 	final private int INVALID = -99;
-	// TODO: Create preference for who goes first
-	private int player = X;
+	
+	final private int max = 2;
+	final private int min = 1;
+
+	private int player;
 	private boolean aiEnabled;
 	private AI ai;
 	
@@ -31,10 +36,33 @@ public class GameActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
+		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		
 		Intent intent = getIntent();
+		
 		aiEnabled = intent.getBooleanExtra(MainActivity.ENABLE_AI, false);
-		if(aiEnabled)
-			ai = new AI(O,X,false);
+		
+		
+		player = whoStart();
+
+		if(aiEnabled){
+			int aiLetter = O;//sharedPref.getInt(getString(R.string.ai_selection_pref), getResources().getInteger(R.string.o_int));
+			int difficulty = 1;//sharedPref.getInt(getString(R.string.ai_selection_pref), getResources().getInteger(R.string.o_int));
+			int humanLetter = (aiLetter == O)? X : O;
+			boolean aiFirst = (player == aiLetter) ? true : false;
+			ai = new AI(aiLetter, humanLetter, difficulty, aiFirst);
+		}
+		
+		startGame();
+	}
+	
+	private void startGame(){
+		if (player == X)
+			Toast.makeText(GameActivity.this, R.string.x_first, Toast.LENGTH_SHORT).show();
+		else
+			Toast.makeText(GameActivity.this, R.string.o_first, Toast.LENGTH_SHORT).show();
+		
+		aiMove();
 	}
 	
 	public void processClick(View v){
@@ -51,6 +79,7 @@ public class GameActivity extends Activity {
      		
          	if (result == DRAW){
          		Toast.makeText(GameActivity.this, R.string.draw_string, Toast.LENGTH_LONG).show();
+         		return;
          	}
          	if (result == WINNER){
          		toastWinner(player);
@@ -74,17 +103,21 @@ public class GameActivity extends Activity {
 		else
 			player = X;
 		
-		if(aiEnabled)
-			ai.setTurn(!ai.getTurn());
+		//if(aiEnabled)
+			//ai.setTurn(!ai.getTurn());
 			
-		if(aiEnabled && ai.getTurn() && board.isActive()){
+		aiMove();
+		
+	}
+	
+	private void aiMove(){
+		if(aiEnabled && (ai.getLetter() == player) && board.isActive()){
 			int [] move = ai.play(board);
 			
 			TableLayout tl = (TableLayout)findViewById(R.id.board_table);
 			TableRow tr = (TableRow)tl.getChildAt(move[1]);
 			ImageButton ib = (ImageButton)tr.getChildAt(move[2]);
 			ib.performClick();
-			
 		}
 	}
 	
@@ -102,7 +135,13 @@ public class GameActivity extends Activity {
 		}
 		
 		board = new GameBoard();
-		Toast.makeText(GameActivity.this, R.string.new_game, Toast.LENGTH_SHORT).show();
+		player = whoStart();
+		startGame();
+		
+	}
+	
+	private int whoStart(){
+		return min + (int)(Math.random() * ((max - min) + 1));
 	}
 	
 	/**
