@@ -26,11 +26,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	 /*public boolean onOptionsItemSelected(MenuItem mi){
+	 public boolean onOptionsItemSelected(MenuItem mi){
 		 Intent intent = new Intent(this,SettingsActivity.class);
 		 startActivity(intent);
 		 return true;
-	 }*/
+	 }
 	 
 	// "One Player" Button listener
 	public void singleGame(View view){

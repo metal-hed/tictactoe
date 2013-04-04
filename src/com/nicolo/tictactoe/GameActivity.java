@@ -36,7 +36,7 @@ public class GameActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key),Context.MODE_PRIVATE);
 		
 		Intent intent = getIntent();
 		
@@ -46,8 +46,8 @@ public class GameActivity extends Activity {
 		player = whoStart();
 
 		if(aiEnabled){
-			int aiLetter = O;//sharedPref.getInt(getString(R.string.ai_selection_pref), getResources().getInteger(R.string.o_int));
-			int difficulty = 1;//sharedPref.getInt(getString(R.string.ai_selection_pref), getResources().getInteger(R.string.o_int));
+			int aiLetter = sharedPref.getInt(getString(R.string.ai_selection_pref), getResources().getInteger(R.integer.ai_selection_pref_default));
+			int difficulty = sharedPref.getInt(getString(R.string.ai_difficulty_pref), getResources().getInteger(R.integer.ai_difficulty_pref_default));
 			int humanLetter = (aiLetter == O)? X : O;
 			boolean aiFirst = (player == aiLetter) ? true : false;
 			ai = new AI(aiLetter, humanLetter, difficulty, aiFirst);

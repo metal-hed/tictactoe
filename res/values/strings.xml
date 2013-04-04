@@ -16,22 +16,21 @@
     <string name="new_game">New Game</string>
     <string name="make_move">Player, make a move</string>
     <string name="cell">cell</string>
-
-    <color name="holo">#0099cc</color>
-
     <string name="title_activity_settings">Settings</string>
     <string name="x">X\'s</string>
     <string name="o">O\'s</string>
-    <string name="x_int">2</string>
-    <string name="o_int">1</string>
     <string name="ai_selection">What should the AI use?</string>
     <string name="ai_selection_pref">AI_SELECTION_PREF</string>
-    <string name="ai_selection_pref_default">1</string>
+    
     <string name="x_first">X\'s go first</string>
     <string name="o_first">O\'s go first</string>
     <string name="ai_difficulty">What level of difficulty should the AI be?</string>
     <string name="ai_difficulty_pref">AI_DIFFICULTY_PREF</string>
-    <string name="ai_difficulty_pref_default">1</string>
     
 
+    <item name="x_int" type="integer" format="integer">2</item>
+    <item name="o_int" type="integer" format="integer" >1</item>
+    <item name="ai_difficulty_pref_default" type="integer" format="integer">1</item>
+    <item name="ai_selection_pref_default" type="integer" format="integer">1</item>
+    <string name="preference_file_key">com.nicolo.tictactoe.PREFSFILE</string>
 </resources>
