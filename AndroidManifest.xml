@@ -7,7 +7,16 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="17" />
-
+	<compatible-screens>
+        <!-- all small size screens -->
+        <screen android:screenSize="small" android:screenDensity="mdpi" />
+        <screen android:screenSize="small" android:screenDensity="hdpi" />
+        <screen android:screenSize="small" android:screenDensity="xhdpi" />
+        <!-- all normal size screens -->
+        <screen android:screenSize="normal" android:screenDensity="mdpi" />
+        <screen android:screenSize="normal" android:screenDensity="hdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xhdpi" />
+    </compatible-screens>
     <application
         android:allowBackup="true"
         android:debuggable="true"

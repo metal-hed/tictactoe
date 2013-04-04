@@ -33,14 +33,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
             android:clickable="false">
+
             	<ImageButton
             	    android:id="@+id/cell0"
-            	    android:layout_width="wrap_content"
+            	    android:layout_width="100dp"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -48,12 +47,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell1"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="100dp"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
-            	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
+            	    android:contentDescription="@string/cell"  	    
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -61,12 +58,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell2"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="100dp"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -84,14 +79,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
 			android:clickable="false">
-            	<ImageButton
+            	<ImageButton
             	    android:id="@+id/cell3"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="wrap_content"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -99,12 +92,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell4"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="wrap_content"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -112,12 +103,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell5"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="wrap_content"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -133,14 +122,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
 			android:clickable="false" >
-            	<ImageButton
+            	<ImageButton
             	    android:id="@+id/cell6"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="wrap_content"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -148,12 +135,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell7"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="wrap_content"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
@@ -161,12 +146,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell8"
-            	    android:layout_width="match_parent"
+            	    android:layout_width="wrap_content"
             	    android:layout_height="wrap_content"
             	    android:adjustViewBounds="true"
             	    android:contentDescription="@string/cell"
-            	    android:maxHeight="100dp"
-            	    android:maxWidth="100dp"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
             	    android:src="@drawable/blank"
