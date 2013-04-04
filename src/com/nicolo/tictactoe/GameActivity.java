@@ -15,7 +15,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 public class GameActivity extends Activity {
-	private GameBoard board = new GameBoard();
+	private GameBoard board;
 	final private int X = 2;
 	final private int O = 1;
 	final private int DRAW = -2;
@@ -41,22 +41,21 @@ public class GameActivity extends Activity {
 		Intent intent = getIntent();
 		
 		aiEnabled = intent.getBooleanExtra(MainActivity.ENABLE_AI, false);
-		
-		
-		player = whoStart();
 
 		if(aiEnabled){
 			int aiLetter = sharedPref.getInt(getString(R.string.ai_selection_pref), getResources().getInteger(R.integer.ai_selection_pref_default));
 			int difficulty = sharedPref.getInt(getString(R.string.ai_difficulty_pref), getResources().getInteger(R.integer.ai_difficulty_pref_default));
 			int humanLetter = (aiLetter == O)? X : O;
-			boolean aiFirst = (player == aiLetter) ? true : false;
-			ai = new AI(aiLetter, humanLetter, difficulty, aiFirst);
+			ai = new AI(aiLetter, humanLetter, difficulty);
 		}
 		
 		startGame();
 	}
 	
 	private void startGame(){
+		board = new GameBoard();
+		player = whoStart();
+
 		if (player == X)
 			Toast.makeText(GameActivity.this, R.string.x_first, Toast.LENGTH_SHORT).show();
 		else
@@ -103,9 +102,6 @@ public class GameActivity extends Activity {
 		else
 			player = X;
 		
-		//if(aiEnabled)
-			//ai.setTurn(!ai.getTurn());
-			
 		aiMove();
 		
 	}
@@ -121,7 +117,12 @@ public class GameActivity extends Activity {
 		}
 	}
 	
-	public void clearBoard(View v){
+	public void newGame(View v){
+		clearBoard();
+		startGame();
+	}
+	
+	private void clearBoard(){
 		TableLayout tl = (TableLayout)findViewById(R.id.board_table);
 		int tlKids = tl.getChildCount();
 
@@ -133,11 +134,6 @@ public class GameActivity extends Activity {
 				ib.setImageResource(R.drawable.blank);
 			}
 		}
-		
-		board = new GameBoard();
-		player = whoStart();
-		startGame();
-		
 	}
 	
 	private int whoStart(){

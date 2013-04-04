@@ -7,59 +7,23 @@ public class AI {
 	private int ai;
 	private int human;
 	private int difficulty;
-	private boolean myTurn;
 	
-	public AI(int ai, int human, int difficulty, boolean myTurn){
+	public AI(int ai, int human, int difficulty){
 		this.ai = ai;
 		this.human = human;
 		this.difficulty = difficulty;
-		this.myTurn = myTurn;
 	}
-	
-	public boolean getTurn(){
-		return myTurn;
-	}
-	
+
 	public int getLetter(){
 		return ai;
-	}
-	public void setTurn(boolean myTurn){
-		this.myTurn = myTurn;
 	}
 	
 	// Get next best move for computer. Return int[2] of {row, col} 
    public int[] play(GameBoard board) {
-	   // TODO: create preference for depth, ie: difficulty
       int[] result = minimax(difficulty, ai, board); // depth, max turn
       return result;
       //return xyToPosition(result[1], result[2]);   // row, col
    }
-   
-   // Convert a cell defined by xy coordinates to a position for the grid view
-  /* private int xyToPosition(int x, int y){
-	   if (x==0){
-		   if(y == 0)
-			   return 0;
-		   else if (y == 1)
-			   return 1;
-		   else 
-			   return 2;
-	   }else if (x == 1){
-		   if(y == 0)
-			   return 3;
-		   else if (y == 1)
-			   return 4;
-		   else 
-			   return 5;
-	   }else{
-		   if(y == 0)
-			   return 6;
-		   else if (y == 1)
-			   return 7;
-		   else 
-			   return 8;
-	   }
-   }*/
 	
 	private int[] minimax (int depth, int player, GameBoard board){
 		
@@ -79,7 +43,7 @@ public class AI {
 		int bestCol = -1;
 		
 		if(possibleMoves.isEmpty() || depth == 0){
-			// Gameover or depth reached
+			// Depth reached
 			bestScore = evaluate(board);
 		}else{
 			for (int[] move : possibleMoves){
@@ -175,7 +139,7 @@ public class AI {
 		}else if (cells[row3][col3] == human){
 			if(score < 0){ // cell 1 and 2 are human
 				score *= 10;
-			} else if (score > 0){ // cell 1 and 2 are ai
+			} else if (score > 1){ // cell 1 and 2 are ai
 				return 0;
 			} else{	// cell 1 and 2 are empty
 				score = -1;
