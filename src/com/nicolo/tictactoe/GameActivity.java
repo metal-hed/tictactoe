@@ -1,5 +1,7 @@
 package com.nicolo.tictactoe;
 
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +23,8 @@ public class GameActivity extends Activity {
 	final private int INVALID = -99;
 	// TODO: Create preference for who goes first
 	private int player = X;
-	private boolean AI;
+	private boolean aiEnabled;
+	private AI ai;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,10 @@ public class GameActivity extends Activity {
 		setupActionBar();
 		
 		Intent intent = getIntent();
-		AI = intent.getBooleanExtra(MainActivity.ENABLE_AI, false);
-
+		aiEnabled = intent.getBooleanExtra(MainActivity.ENABLE_AI, false);
+		if(aiEnabled)
+			ai = new AI(O,X,false);
 	}
-	
-	public void process(){
-		
-	}
-
 	
 	public void processClick(View v){
 		 int result = board.processMove(Integer.parseInt(v.getTag().toString()), player);
@@ -76,6 +75,19 @@ public class GameActivity extends Activity {
 			player = O;
 		else
 			player = X;
+		
+		if(aiEnabled)
+			ai.setTurn(!ai.getTurn());
+			
+		if(aiEnabled && ai.getTurn() && board.isActive()){
+			int [] move = ai.play(board);
+			
+			TableLayout tl = (TableLayout)findViewById(R.id.board_table);
+			TableRow tr = (TableRow)tl.getChildAt(move[1]);
+			ImageButton ib = (ImageButton)tr.getChildAt(move[2]);
+			ib.performClick();
+			
+		}
 	}
 	
 	public void clearBoard(View v){

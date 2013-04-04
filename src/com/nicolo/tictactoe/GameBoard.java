@@ -102,12 +102,18 @@ public class GameBoard {
 			}
 		}
 		
-		if(moveCount == (Math.pow(SIZE, 2)))
+		if(moveCount == (Math.pow(SIZE, 2))){
+			active = false;
 			return DRAW; // DRAW
+		}
 		
 		return CONTINUE;
 	}
 	public int getSize(){
 		return SIZE;
+	}
+	
+	public boolean isActive(){
+		return active;
 	}
 }

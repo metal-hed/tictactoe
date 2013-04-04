@@ -23,14 +23,15 @@ public class AI {
 	}
 	
 	// Get next best move for computer. Return int[2] of {row, col} 
-   public int play(GameBoard board) {
+   public int[] play(GameBoard board) {
 	   // TODO: create preference for depth, ie: difficulty
-      int[] result = minimax(2, ai, board); // depth, max turn
-      return xyToPosition(result[1], result[2]);   // row, col
+      int[] result = minimax(1, ai, board); // depth, max turn
+      return result;
+      //return xyToPosition(result[1], result[2]);   // row, col
    }
    
    // Convert a cell defined by xy coordinates to a position for the grid view
-   private int xyToPosition(int x, int y){
+  /* private int xyToPosition(int x, int y){
 	   if (x==0){
 		   if(y == 0)
 			   return 0;
@@ -53,7 +54,7 @@ public class AI {
 		   else 
 			   return 8;
 	   }
-   }
+   }*/
 	
 	private int[] minimax (int depth, int player, GameBoard board){
 		
@@ -65,9 +66,9 @@ public class AI {
 		int currentScore;
 		
 		if(player == ai)
-			bestScore = Integer.MAX_VALUE;
-		else 
 			bestScore = Integer.MIN_VALUE;
+		else 
+			bestScore = Integer.MAX_VALUE;
 		
 		int bestRow = -1;
 		int bestCol = -1;
@@ -78,7 +79,7 @@ public class AI {
 		}else{
 			for (int[] move : possibleMoves){
 				// Try for current player
-				cells[move[0]][move[1]] = ai;
+				cells[move[0]][move[1]] = player;
 				if(player == ai){	// maximize for ai
 					currentScore = minimax(depth-1,human, board)[0];
 					if (currentScore > bestScore){
