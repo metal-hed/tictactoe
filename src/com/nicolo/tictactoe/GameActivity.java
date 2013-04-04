@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 public class GameActivity extends Activity {
@@ -39,7 +41,6 @@ public class GameActivity extends Activity {
 
 	
 	public void processClick(View v){
-		//Toast.makeText(GameActivity.this, ""+v.getTag(), Toast.LENGTH_LONG).show();
 		 int result = board.processMove(Integer.parseInt(v.getTag().toString()), player);
          
          if(result != INVALID){
@@ -78,6 +79,17 @@ public class GameActivity extends Activity {
 	}
 	
 	public void clearBoard(View v){
+		TableLayout tl = (TableLayout)findViewById(R.id.board_table);
+		int tlKids = tl.getChildCount();
+
+		for(int i = 0; i < tlKids; i++){
+			TableRow tr = (TableRow)tl.getChildAt(i);
+			int trKids = tr.getChildCount();
+			for(int j = 0; j < trKids; j++){
+				ImageButton ib = (ImageButton)tr.getChildAt(j);
+				ib.setImageResource(R.drawable.blank);
+			}
+		}
 		
 		board = new GameBoard();
 		Toast.makeText(GameActivity.this, R.string.new_game, Toast.LENGTH_SHORT).show();
