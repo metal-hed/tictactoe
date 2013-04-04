@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,9 +26,14 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	 public boolean onOptionsItemSelected(MenuItem mi){
+		 Intent intent = new Intent(this,SettingsActivity.class);
+		 startActivity(intent);
+		 return true;
+	 }
+	 
 	// "One Player" Button listener
 	public void singleGame(View view){
-		//Toast.makeText(getApplicationContext(), getResources().getString(R.string.notReady), Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this,GameActivity.class);
 		intent.putExtra(ENABLE_AI, true);
 		startActivity(intent);

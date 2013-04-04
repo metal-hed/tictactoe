@@ -16,6 +16,17 @@
     <string name="new_game">New Game</string>
     <string name="make_move">Player, make a move</string>
     <string name="cell">cell</string>
+
     <color name="holo">#0099cc</color>
+
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="who_go_first">Who should go first?</string>
+    <string name="x">X\'s</string>
+    <string name="o">O\'s</string>
+    <string name="go_first_pref"/>
+    <string name="x_int">2</string>
+    <string name="o_int">1</string>
+    <string name="ai_selection">What should the AI use?</string>
+    <string name="ai_selection_pref"/>
 
 </resources>
