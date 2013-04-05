@@ -43,7 +43,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="0" />
 
@@ -55,7 +55,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"  	    
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="1" />
 
@@ -67,7 +67,7 @@
             	     android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="2" />
 
@@ -87,7 +87,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="3" />
 
@@ -99,7 +99,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="4" />
 
@@ -111,7 +111,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="5" />
 
@@ -131,7 +131,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="6" />
 
@@ -143,7 +143,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="7" />
 
@@ -155,7 +155,7 @@
             	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
-            	    android:scaleType="centerInside"
+            	    android:scaleType="centerCrop"
             	    android:src="@drawable/blank"
             	    android:tag="8" />
 
