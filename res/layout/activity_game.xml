@@ -32,13 +32,15 @@
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            android:clickable="false">
+            android:clickable="false"
+            android:layout_weight="3">
 
             	<ImageButton
             	    android:id="@+id/cell0"
-            	    android:layout_width="100dp"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -47,9 +49,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell1"
-            	    android:layout_width="100dp"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"  	    
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -58,9 +61,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell2"
-            	    android:layout_width="100dp"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	     android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -69,21 +73,18 @@
 
         </TableRow>
 
-		<!-- Draw Line 
-		<View
-		    android:layout_height="2dip"
-		    android:background="@color/holo" /-->
-
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-			android:clickable="false">
+			android:clickable="false"
+			android:layout_weight="3">
             	<ImageButton
             	    android:id="@+id/cell3"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -92,9 +93,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell4"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -103,9 +105,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell5"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -113,20 +116,19 @@
             	    android:tag="5" />
 
         </TableRow>
-		<!-- Draw Line 
-		<View
-		    android:layout_height="2dip"
-		    android:background="@color/holo" /-->
+		
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-			android:clickable="false" >
+			android:clickable="false"
+			android:layout_weight="3" >
             	<ImageButton
             	    android:id="@+id/cell6"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -135,9 +137,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell7"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
@@ -146,9 +149,10 @@
 
             	<ImageButton
             	    android:id="@+id/cell8"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
+            	    android:layout_width="0dp"
+            	    android:layout_height="match_parent"
             	    android:adjustViewBounds="true"
+            	    android:layout_weight="1"
             	    android:contentDescription="@string/cell"
             	    android:onClick="processClick"
             	    android:scaleType="centerInside"
