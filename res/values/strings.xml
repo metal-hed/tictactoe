@@ -33,4 +33,7 @@
     <item name="ai_difficulty_pref_default" type="integer" format="integer">1</item>
     <item name="ai_selection_pref_default" type="integer" format="integer">1</item>
     <string name="preference_file_key">com.nicolo.tictactoe.PREFSFILE</string>
+    
+    <item name="card_flip_time_full" type="integer" format="integer">300</item>
+    <item name="card_flip_time_half" type="integer" format="integer">150</item>
 </resources>

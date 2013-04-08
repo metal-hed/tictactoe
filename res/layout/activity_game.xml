@@ -18,148 +18,16 @@
         android:text="@string/new_game"
         android:onClick="newGame" />
 
-    <TableLayout
-        android:id="@+id/board_table"
+    <RelativeLayout
+        android:id="@+id/board_fragment"
+        android:name="com.nicolo.tictactoe.BoardFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:clickable="false">
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:clickable="false"
-            android:layout_weight="3">
-
-            	<ImageButton
-            	    android:id="@+id/cell0"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="0" />
-
-            	<ImageButton
-            	    android:id="@+id/cell1"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"  	    
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="1" />
-
-            	<ImageButton
-            	    android:id="@+id/cell2"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	     android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="2" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-			android:clickable="false"
-			android:layout_weight="3">
-            	<ImageButton
-            	    android:id="@+id/cell3"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="3" />
-
-            	<ImageButton
-            	    android:id="@+id/cell4"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="4" />
-
-            	<ImageButton
-            	    android:id="@+id/cell5"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="5" />
-
-        </TableRow>
-		
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-			android:clickable="false"
-			android:layout_weight="3" >
-            	<ImageButton
-            	    android:id="@+id/cell6"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="6" />
-
-            	<ImageButton
-            	    android:id="@+id/cell7"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="7" />
-
-            	<ImageButton
-            	    android:id="@+id/cell8"
-            	    android:layout_width="0dp"
-            	    android:layout_height="match_parent"
-            	    android:adjustViewBounds="true"
-            	    android:layout_weight="1"
-            	    android:contentDescription="@string/cell"
-            	    android:onClick="processClick"
-            	    android:scaleType="centerCrop"
-            	    android:src="@drawable/blank"
-            	    android:tag="8" />
-
-        </TableRow>
-    </TableLayout>
+        android:layout_marginBottom="30dp"
+        tools:layout="@layout/board_fragment" />
 
 </RelativeLayout>
