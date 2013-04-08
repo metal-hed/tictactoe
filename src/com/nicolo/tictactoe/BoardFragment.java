@@ -1,5 +1,6 @@
 package com.nicolo.tictactoe;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +40,10 @@ public class BoardFragment extends Fragment implements OnClickListener{
 	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 	
 	private View master;
+	private Toast tShort;
+	private Toast tLong;
 
+	@SuppressLint("ShowToast")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -66,9 +70,24 @@ public class BoardFragment extends Fragment implements OnClickListener{
 
 		
 		master = inflater.inflate(R.layout.board_fragment, container, false);
+		
+		tShort = Toast.makeText( this.getActivity()  , "" , Toast.LENGTH_SHORT );
+		tLong = Toast.makeText( this.getActivity()  , "" , Toast.LENGTH_LONG );
+		
 		startGame();
 		
 		return master;
+	}
+	
+	@Override
+	public void onPause() {
+         super.onPause();
+         
+         if(tShort!=null)
+           tShort.cancel();
+         
+         if(tLong != null)
+        	 tLong.cancel();
 	}
 	
 	class MyGestureDetector extends SimpleOnGestureListener {
@@ -125,10 +144,12 @@ public class BoardFragment extends Fragment implements OnClickListener{
 		player = whoStart();
 
 		if (player == X)
-			Toast.makeText(getActivity(), R.string.x_first, Toast.LENGTH_SHORT).show();
+			tShort.setText(R.string.x_first);
 		else
-			Toast.makeText(getActivity(), R.string.o_first, Toast.LENGTH_SHORT).show();
+			tShort.setText(R.string.o_first);
+			
 
+		tShort.show();
 		aiMove();
 	}
 
@@ -145,7 +166,8 @@ public class BoardFragment extends Fragment implements OnClickListener{
 
 
 			if (result == DRAW){
-				Toast.makeText(getActivity(), R.string.draw_string, Toast.LENGTH_LONG).show();
+				tLong.setText(R.string.draw_string);
+				tLong.show();
 				return;
 			}
 			if (result == WINNER){
@@ -159,9 +181,11 @@ public class BoardFragment extends Fragment implements OnClickListener{
 
 	private void toastWinner(int player){
 		if (player == X)
-			Toast.makeText(getActivity(), R.string.x_win, Toast.LENGTH_LONG).show();
+			tLong.setText(R.string.x_win);
 		else
-			Toast.makeText(getActivity(), R.string.o_win, Toast.LENGTH_LONG).show();
+			tLong.setText(R.string.o_win);
+		
+		tLong.show();
 	}
 
 	private void switchPlayer(){
