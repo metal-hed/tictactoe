@@ -31,8 +31,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Place holder"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="Swipe left or right on the board to start a new game" />
 
    </RelativeLayout>	
 
