@@ -4,16 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-public class GameActivity extends Activity {
+public class GameActivity extends Activity implements OnGestureListener{
 	private GameBoard board;
 	final private int X = 2;
 	final private int O = 1;
@@ -28,10 +32,15 @@ public class GameActivity extends Activity {
 	private boolean aiEnabled;
 	private AI ai;
 	
+	private GestureDetector gDetector;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
+		
+		// Setup gesture detector
+		gDetector = new GestureDetector(this,this);
+		
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -164,5 +173,49 @@ public class GameActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	public boolean onDown(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent start, MotionEvent finish, float velocityX,
+			float velocityY) {
+		((TableLayout)findViewById(R.id.board_table)).setBackgroundColor(Color.CYAN);
+		return true;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent e) {
+		return gDetector.onTouchEvent(e);
+	}
+	
 
 }
