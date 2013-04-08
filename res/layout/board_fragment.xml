@@ -25,6 +25,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/blank"
             android:tag="0" />
+            <!-- >android:background="@android:color/transparent"/-->
 
         <ImageButton
             android:id="@+id/cell1"
