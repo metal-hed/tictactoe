@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-public class GameActivity extends Activity implements OnGestureListener{
+public class GameActivity extends Activity {
 	private GameBoard board;
 	final private int X = 2;
 	final private int O = 1;
@@ -33,13 +32,23 @@ public class GameActivity extends Activity implements OnGestureListener{
 	private AI ai;
 	
 	private GestureDetector gDetector;
+	private View.OnTouchListener gListener;
+	private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
-		// Setup gesture detector
-		gDetector = new GestureDetector(this,this);
+		 // Gesture detection
+        gDetector = new GestureDetector(this, new MyGestureDetector());
+        gListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gDetector.onTouchEvent(event);
+            }
+        };
 		
 		// Show the Up button in the action bar.
 		setupActionBar();
@@ -60,8 +69,29 @@ public class GameActivity extends Activity implements OnGestureListener{
 		startGame();
 	}
 	
+	 class MyGestureDetector extends SimpleOnGestureListener {
+	        @Override
+	        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+	            try {
+	                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+	                    return false;
+	                // right to left swipe
+	                if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+	                    Toast.makeText(GameActivity.this, "Left Swipe", Toast.LENGTH_SHORT).show();
+	                }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+	                    startGame();
+	                }
+	            } catch (Exception e) {
+	                // nothing
+	            }
+	            return false;
+        }
+
+    }
+	
 	private void startGame(){
 		board = new GameBoard();
+		clearBoard();
 		player = whoStart();
 
 		if (player == X)
@@ -140,6 +170,7 @@ public class GameActivity extends Activity implements OnGestureListener{
 			for(int j = 0; j < trKids; j++){
 				ImageButton ib = (ImageButton)tr.getChildAt(j);
 				ib.setImageResource(R.drawable.blank);
+				ib.setOnTouchListener(gListener);
 			}
 		}
 	}
@@ -172,50 +203,6 @@ public class GameActivity extends Activity implements OnGestureListener{
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public boolean onDown(MotionEvent e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean onFling(MotionEvent start, MotionEvent finish, float velocityX,
-			float velocityY) {
-		((TableLayout)findViewById(R.id.board_table)).setBackgroundColor(Color.CYAN);
-		return true;
-	}
-
-	@Override
-	public void onLongPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-			float distanceY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void onShowPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean onSingleTapUp(MotionEvent e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public boolean onTouchEvent(MotionEvent e) {
-		return gDetector.onTouchEvent(e);
-	}
-	
+	}	
 
 }
