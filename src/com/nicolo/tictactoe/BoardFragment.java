@@ -79,7 +79,14 @@ public class BoardFragment extends Fragment implements OnClickListener{
 					return false;
 				// right to left swipe
 				if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-					Toast.makeText(getActivity(), "Left Swipe", Toast.LENGTH_SHORT).show();
+					 getFragmentManager()
+			            .beginTransaction()
+			            .setCustomAnimations(
+			            		 	R.animator.card_flip_right_in, R.animator.card_flip_right_out,
+				            		R.animator.card_flip_left_in, R.animator.card_flip_left_out)
+				         .replace(R.id.board_fragment, new BoardFragment())
+				         .commit();
+					 startGame();
 				}  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 					// Create and commit a new fragment transaction that adds the fragment for the back of
 				    // the card, uses custom animations, and is part of the fragment manager's back stack.
@@ -92,8 +99,8 @@ public class BoardFragment extends Fragment implements OnClickListener{
 				            // resources representing rotations when flipping back to the front (e.g. when
 				            // the system Back button is pressed).
 				            .setCustomAnimations(
-				                    R.animator.card_flip_right_in, R.animator.card_flip_right_out,
-				                    R.animator.card_flip_left_in, R.animator.card_flip_left_out)
+				            		R.animator.card_flip_left_in, R.animator.card_flip_left_out,
+				                    R.animator.card_flip_right_in, R.animator.card_flip_right_out)
 
 				            // Replace any fragments currently in the container view with a fragment
 				            // representing the next page (indicated by the just-incremented currentPage
