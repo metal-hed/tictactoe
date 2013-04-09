@@ -226,5 +226,9 @@ public class BoardFragment extends Fragment implements OnClickListener{
 	private int whoStart(){
 		return min + (int)(Math.random() * ((max - min) + 1));
 	}
-
+	
+	public boolean isActive(){
+		return board.isActive();
+	}
+	
 }

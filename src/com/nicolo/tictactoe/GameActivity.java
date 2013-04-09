@@ -1,23 +1,33 @@
 package com.nicolo.tictactoe;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-import android.view.View;
 
-public class GameActivity extends Activity {	
+import com.nicolo.tictactoe.CancelGameDialogFragment.CancelGameDialogListener;
+
+public class GameActivity extends Activity implements CancelGameDialogListener{	
+	
+	private CancelGameDialogFragment exitDialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		setupActionBar();
-		
+		exitDialog = new CancelGameDialogFragment();
 		// Add the fragment to the screen.
 		getFragmentManager().beginTransaction().add(R.id.board_fragment, new BoardFragment()).commit();
+	}
+	
+	@Override
+	public void onBackPressed(){
+		if(getBoardFragment().isActive())
+			exitDialog.show(getFragmentManager(), "Exit_Dialog");
+		else
+			NavUtils.navigateUpFromSameTask(this);
 	}
 		
 	/**
@@ -40,10 +50,28 @@ public class GameActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			if(getBoardFragment().isActive())
+				exitDialog.show(getFragmentManager(), "Exit_Dialog");
+			else
+				NavUtils.navigateUpFromSameTask(this);
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		NavUtils.navigateUpFromSameTask(this);		
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		// Do nothing		
 	}	
+	
+	private BoardFragment getBoardFragment(){
+		return (BoardFragment) getFragmentManager().findFragmentById(R.id.board_fragment);
+	}
 
 }

@@ -36,4 +36,7 @@
     
     <item name="card_flip_time_full" type="integer" format="integer">300</item>
     <item name="card_flip_time_half" type="integer" format="integer">150</item>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_exit">Exit</string>
+    <string name="dialog_confirm_exit">Are you sure you want to exit this unfinished game?</string>
 </resources>
