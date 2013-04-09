@@ -77,8 +77,7 @@ public class BoardFragment extends Fragment implements OnClickListener{
 		
 		tShort = Toast.makeText( this.getActivity()  , "" , Toast.LENGTH_SHORT );
 		tLong = Toast.makeText( this.getActivity()  , "" , Toast.LENGTH_LONG );
-		
-		//startGame();
+
 		return master;
 	}
 	
@@ -179,6 +178,7 @@ public class BoardFragment extends Fragment implements OnClickListener{
 		AnimatorSet zoomFade = new AnimatorSet();
 		zoomFade.play(fadeIn).with(zoomInX).with(zoomInY);
 		zoomFade.play(fadeOut).with(zoomOutX).with(zoomOutY).after(fadeIn);
+		iv.bringToFront();
 		zoomFade.start();
 	}
 	
