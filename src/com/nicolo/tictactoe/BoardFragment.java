@@ -16,8 +16,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -80,8 +78,7 @@ public class BoardFragment extends Fragment implements OnClickListener{
 		tShort = Toast.makeText( this.getActivity()  , "" , Toast.LENGTH_SHORT );
 		tLong = Toast.makeText( this.getActivity()  , "" , Toast.LENGTH_LONG );
 		
-		startGame();
-		
+		//startGame();
 		return master;
 	}
 	
@@ -94,6 +91,14 @@ public class BoardFragment extends Fragment implements OnClickListener{
          
          if(tLong != null)
         	 tLong.cancel();
+	}
+	
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(board==null)
+			startGame();
 	}
 	
 	class MyGestureDetector extends SimpleOnGestureListener {
@@ -136,7 +141,7 @@ public class BoardFragment extends Fragment implements OnClickListener{
 			} catch (Exception e) {
 				// nothing
 			}
-			startGame();
+			board = new GameBoard();
 			return true;
 		}
 
@@ -148,28 +153,28 @@ public class BoardFragment extends Fragment implements OnClickListener{
 		iv.setImageResource(R.drawable.new_game);
 		
 		ObjectAnimator fadeIn = ObjectAnimator.ofFloat(iv, "alpha", 0f,1f);
-		fadeIn.setInterpolator(new LinearInterpolator());
-		fadeIn.setDuration(1000);
+		fadeIn.setInterpolator(new AccelerateInterpolator());
+		fadeIn.setDuration(750);
 		
 		ObjectAnimator zoomInX = ObjectAnimator.ofFloat(iv,"scaleX",0.1f,3f);
-		zoomInX.setInterpolator(new OvershootInterpolator());
-		zoomInX.setDuration(1000);
+		zoomInX.setInterpolator(new AccelerateInterpolator());
+		zoomInX.setDuration(750);
 		
 		ObjectAnimator zoomInY = ObjectAnimator.ofFloat(iv,"scaleY",0.1f,3f);
-		zoomInY.setInterpolator(new OvershootInterpolator());
-		zoomInY.setDuration(1000);
+		zoomInY.setInterpolator(new AccelerateInterpolator());
+		zoomInY.setDuration(750);
 		
 		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(iv, "alpha", 1f,0f);
 		fadeOut.setInterpolator(new AccelerateInterpolator());
-		fadeOut.setDuration(500);
+		fadeOut.setDuration(350);
 		
 		ObjectAnimator zoomOutX = ObjectAnimator.ofFloat(iv,"scaleX",3f,0.1f);
 		zoomOutX.setInterpolator(new AccelerateInterpolator());
-		zoomOutX.setDuration(500);
+		zoomOutX.setDuration(350);
 		
 		ObjectAnimator zoomOutY = ObjectAnimator.ofFloat(iv,"scaleY",3f,0.1f);
 		zoomOutY.setInterpolator(new AccelerateInterpolator());
-		zoomOutY.setDuration(500);
+		zoomOutY.setDuration(350);
 		
 		AnimatorSet zoomFade = new AnimatorSet();
 		zoomFade.play(fadeIn).with(zoomInX).with(zoomInY);
@@ -179,6 +184,7 @@ public class BoardFragment extends Fragment implements OnClickListener{
 	
 	public void startGame(){
 		board = new GameBoard();
+		board.setActive(true);
 		clearBoard();
 		player = whoStart();
 

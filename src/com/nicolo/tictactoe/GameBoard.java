@@ -15,7 +15,7 @@ public class GameBoard {
 	
 	public GameBoard(){
 		moveCount = 0;
-		active = true;
+		active = false;
 	}
 	
 	public int[][] getBoard(){
@@ -115,5 +115,9 @@ public class GameBoard {
 	
 	public boolean isActive(){
 		return active;
+	}
+	
+	public void setActive(boolean active){
+		this.active = active;
 	}
 }
