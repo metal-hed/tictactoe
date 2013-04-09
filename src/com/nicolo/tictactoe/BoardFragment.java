@@ -1,5 +1,7 @@
 package com.nicolo.tictactoe;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
@@ -13,7 +15,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -104,7 +110,6 @@ public class BoardFragment extends Fragment implements OnClickListener{
 			            		 	R.animator.card_flip_right_in, R.animator.card_flip_right_out)
 				         .replace(R.id.board_fragment, new BoardFragment())
 				         .commit();
-					 startGame();
 				}  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 					// Create and commit a new fragment transaction that adds the fragment for the back of
 				    // the card, uses custom animations, and is part of the fragment manager's back stack.
@@ -126,16 +131,52 @@ public class BoardFragment extends Fragment implements OnClickListener{
 
 				            // Commit the transaction.
 				            .commit();
-					startGame();
+					
 				}
 			} catch (Exception e) {
 				// nothing
 			}
-			return false;
+			startGame();
+			return true;
 		}
 
 	}
-
+	
+	public void animateGameStatus(){
+		ImageView iv = (ImageView)master.findViewById(R.id.animation_view);
+		iv.setAlpha(0f);
+		iv.setImageResource(R.drawable.new_game);
+		
+		ObjectAnimator fadeIn = ObjectAnimator.ofFloat(iv, "alpha", 0f,1f);
+		fadeIn.setInterpolator(new LinearInterpolator());
+		fadeIn.setDuration(1000);
+		
+		ObjectAnimator zoomInX = ObjectAnimator.ofFloat(iv,"scaleX",0.1f,3f);
+		zoomInX.setInterpolator(new OvershootInterpolator());
+		zoomInX.setDuration(1000);
+		
+		ObjectAnimator zoomInY = ObjectAnimator.ofFloat(iv,"scaleY",0.1f,3f);
+		zoomInY.setInterpolator(new OvershootInterpolator());
+		zoomInY.setDuration(1000);
+		
+		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(iv, "alpha", 1f,0f);
+		fadeOut.setInterpolator(new AccelerateInterpolator());
+		fadeOut.setDuration(500);
+		
+		ObjectAnimator zoomOutX = ObjectAnimator.ofFloat(iv,"scaleX",3f,0.1f);
+		zoomOutX.setInterpolator(new AccelerateInterpolator());
+		zoomOutX.setDuration(500);
+		
+		ObjectAnimator zoomOutY = ObjectAnimator.ofFloat(iv,"scaleY",3f,0.1f);
+		zoomOutY.setInterpolator(new AccelerateInterpolator());
+		zoomOutY.setDuration(500);
+		
+		AnimatorSet zoomFade = new AnimatorSet();
+		zoomFade.play(fadeIn).with(zoomInX).with(zoomInY);
+		zoomFade.play(fadeOut).with(zoomOutX).with(zoomOutY).after(fadeIn);
+		zoomFade.start();
+	}
+	
 	public void startGame(){
 		board = new GameBoard();
 		clearBoard();
@@ -148,6 +189,7 @@ public class BoardFragment extends Fragment implements OnClickListener{
 			
 
 		tShort.show();
+		animateGameStatus();
 		aiMove();
 	}
 

@@ -20,6 +20,7 @@
         android:layout_above="@+id/infoPane"
         tools:layout="@layout/board_fragment" />
 
+
     <RelativeLayout
         android:id="@+id/infoPane"
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Swipe left or right on the board to start a new game" />
+            android:text="@string/new_game_info" />
 
    </RelativeLayout>	
 

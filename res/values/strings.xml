@@ -39,4 +39,6 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_exit">Exit</string>
     <string name="dialog_confirm_exit">Are you sure you want to exit this unfinished game?</string>
+    <string name="new_game_info">Swipe left or right on the board to start a new game</string>
+    <string name="animation_view">The view to animate game status</string>
 </resources>

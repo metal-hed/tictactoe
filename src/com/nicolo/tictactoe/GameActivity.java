@@ -62,12 +62,12 @@ public class GameActivity extends Activity implements CancelGameDialogListener{
 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
-		NavUtils.navigateUpFromSameTask(this);		
+		NavUtils.navigateUpFromSameTask(this); // User clicked exit from dialog
 	}
 
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
-		// Do nothing		
+		// Do nothing, user clicked cancel from dialog
 	}	
 	
 	private BoardFragment getBoardFragment(){
