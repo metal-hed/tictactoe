@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageButton;
@@ -24,28 +25,30 @@ import android.widget.Toast;
 
 public class BoardFragment extends Fragment implements OnClickListener{
 	private GameBoard board;
-	final private int X = 2;
-	final private int O = 1;
-	final private int DRAW = -2;
-	final private int WINNER = 69;
-	final private int INVALID = -99;
-
-	final private int max = 2;
-	final private int min = 1;
-
+	
+	private final int X = 2;
+	private final int O = 1;
+	private final int DRAW = -2;
+	private final int WINNER = 69;
+	private final int INVALID = -99;
+	private final int max = 2;
+	private final int min = 1;
+	private final int SWIPE_MIN_DISTANCE = 120;
+	private final int SWIPE_MAX_OFF_PATH = 250;
+	private final int SWIPE_THRESHOLD_VELOCITY = 200;
 	private int player;
-	private boolean aiEnabled;
+	
 	private AI ai;
 
 	private GestureDetector gDetector;
 	private View.OnTouchListener gListener;
-	private static final int SWIPE_MIN_DISTANCE = 120;
-	private static final int SWIPE_MAX_OFF_PATH = 250;
-	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 	
 	private View master;
 	private Toast tShort;
 	private Toast tLong;
+	
+	private boolean aiEnabled;
+	private static boolean firstGame = true;
 
 	@SuppressLint("ShowToast")
 	@Override
@@ -135,21 +138,24 @@ public class BoardFragment extends Fragment implements OnClickListener{
 
 				            // Commit the transaction.
 				            .commit();
-					
 				}
 			} catch (Exception e) {
 				// nothing
 			}
-			board = new GameBoard();
+			
 			return true;
 		}
 
 	}
 	
-	public void animateGameStatus(){
+	public void animateGameStatus(int id){
 		ImageView iv = (ImageView)master.findViewById(R.id.animation_view);
 		iv.setAlpha(0f);
-		iv.setImageResource(R.drawable.new_game);
+		switch (id){
+			case R.drawable.new_game: iv.setImageResource(R.drawable.new_game); break;
+			// TODO: Add cases for victory!
+		}
+		
 		
 		ObjectAnimator fadeIn = ObjectAnimator.ofFloat(iv, "alpha", 0f,1f);
 		fadeIn.setInterpolator(new AccelerateInterpolator());
@@ -183,6 +189,9 @@ public class BoardFragment extends Fragment implements OnClickListener{
 	}
 	
 	public void startGame(){
+		if(firstGame == false)
+			animateGameStatus(R.drawable.new_game);
+		
 		board = new GameBoard();
 		board.setActive(true);
 		clearBoard();
@@ -193,9 +202,8 @@ public class BoardFragment extends Fragment implements OnClickListener{
 		else
 			tShort.setText(R.string.o_first);
 			
-
+		firstGame = false;
 		tShort.show();
-		animateGameStatus();
 		aiMove();
 	}
 
