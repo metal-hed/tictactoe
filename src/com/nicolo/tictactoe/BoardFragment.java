@@ -14,10 +14,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -154,21 +153,23 @@ public class BoardFragment extends Fragment implements OnClickListener {
 		iv.setAlpha(0f);
 		switch (id){
 			case R.drawable.new_game: iv.setImageResource(R.drawable.new_game); break;
-			// TODO: Add cases for victory!
+			case R.drawable.victory: iv.setImageResource(R.drawable.victory); break;
+			case R.drawable.draw: iv.setImageResource(R.drawable.draw); break;
+			default:
 		}
 		
 		
 		ObjectAnimator fadeIn = ObjectAnimator.ofFloat(iv, "alpha", 0f,1f);
-		fadeIn.setInterpolator(new AccelerateInterpolator());
-		fadeIn.setDuration(750);
+		fadeIn.setInterpolator(new OvershootInterpolator());
+		fadeIn.setDuration(350);
 		
 		ObjectAnimator zoomInX = ObjectAnimator.ofFloat(iv,"scaleX",0.1f,3f);
-		zoomInX.setInterpolator(new AccelerateInterpolator());
-		zoomInX.setDuration(750);
+		zoomInX.setInterpolator(new OvershootInterpolator());
+		zoomInX.setDuration(350);
 		
 		ObjectAnimator zoomInY = ObjectAnimator.ofFloat(iv,"scaleY",0.1f,3f);
-		zoomInY.setInterpolator(new AccelerateInterpolator());
-		zoomInY.setDuration(750);
+		zoomInY.setInterpolator(new OvershootInterpolator());
+		zoomInY.setDuration(350);
 		
 		ObjectAnimator fadeOut = ObjectAnimator.ofFloat(iv, "alpha", 1f,0f);
 		fadeOut.setInterpolator(new AccelerateInterpolator());
@@ -190,6 +191,7 @@ public class BoardFragment extends Fragment implements OnClickListener {
 	}
 	
 	public void startGame(){
+		((GameActivity)getActivity()).newGame();
 		if(firstGame == false)
 			animateGameStatus(R.drawable.new_game);
 		
@@ -222,10 +224,13 @@ public class BoardFragment extends Fragment implements OnClickListener {
 
 			if (result == DRAW){
 				tLong.setText(R.string.draw_string);
-				tLong.show();
+				//tLong.show();
+				animateGameStatus(R.drawable.draw);
+				((GameActivity)getActivity()).endGame();
 				return;
 			}
 			if (result == WINNER){
+				animateGameStatus(R.drawable.victory);
 				toastWinner(player);
 				return;
 			}
@@ -236,11 +241,12 @@ public class BoardFragment extends Fragment implements OnClickListener {
 
 	private void toastWinner(int player){
 		if (player == X)
-			tLong.setText(R.string.x_win);
+			tShort.setText(R.string.x_win);
 		else
-			tLong.setText(R.string.o_win);
+			tShort.setText(R.string.o_win);
 		
-		tLong.show();
+		tShort.show();
+		((GameActivity)getActivity()).endGame();
 	}
 
 	private void switchPlayer(){
