@@ -41,4 +41,6 @@
     <string name="dialog_confirm_exit">Are you sure you want to exit this unfinished game?</string>
     <string name="new_game_info">Swipe left or right on the board to start a new game</string>
     <string name="animation_view">The view to animate game status</string>
+    <string name="chev_right_desc">ImageView for chevron right</string>
+    <string name="chev_left_desc">ImageView for chevron left</string>
 </resources>

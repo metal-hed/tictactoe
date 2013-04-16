@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
@@ -23,7 +24,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-public class BoardFragment extends Fragment implements OnClickListener{
+public class BoardFragment extends Fragment implements OnClickListener {
 	private GameBoard board;
 	
 	private final int X = 2;
